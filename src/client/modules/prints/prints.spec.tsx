@@ -52,6 +52,9 @@ describe('Prints component', () => {
 
             expect(getSpy).toHaveBeenCalledTimes(1)
             expect(queryByRole('alert')).not.toBeInTheDocument()
+
+            expect(getByText(printOne.title)).toBeInTheDocument()
+            expect(getByText(printTwo.title)).toBeInTheDocument()
         })        
     })
 
