@@ -1,10 +1,9 @@
 import express from 'express'
+import { startServer } from './server'
 
-const app = express()
 const port = 9000
+const server = startServer({ app: express(), port })
 
-app.get('/', (_, res) => {
-  res.status(200).send('ok')
+server.listen(port, () => {
+    console.log(`Running on port ${port}`)
 })
-
-app.listen(port, () => console.log(`Running on port ${port}`))
