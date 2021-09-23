@@ -17,6 +17,9 @@ export function startServer({ app, port }:AppConfig): Express  {
         res.status(200).send({ status: "ok"})
     })
     
+    app.get('/prints', async (_, res) => {
+        res.status(200).send({ inf: {}, records: []})
+    })
     return app
 }
 

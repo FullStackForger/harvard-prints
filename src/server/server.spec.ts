@@ -12,7 +12,7 @@ describe('Server', () => {
       .expect(200)
       .expect('Content-Type', /json/)
   })
-  
+
   describe('API Key validation', () => {      
     let { API_KEY } = process.env
 
@@ -26,6 +26,15 @@ describe('Server', () => {
 
     it('throws for missing API_KEY', () => {      
       expect(() => startServer({ app: express(), port: 5000 })).toThrow(new Error('Invalid configuration API_KEY is missing.'))      
+    })
+  })
+
+  describe('/prints', () => {
+    it('returns list of prints', async () => {      
+      await request(app)
+        .get('/prints')
+        .expect(200)
+        .expect('Content-Type', /json/)
     })
   })
 
