@@ -2,7 +2,6 @@ import express from 'express'
 import request from 'supertest'
 import axios from 'axios'
 import { startServer } from './server'
-import { URL } from 'url'
 
 describe('Server', () => {  
   const app = startServer({ app: express(), port: 5000 })  

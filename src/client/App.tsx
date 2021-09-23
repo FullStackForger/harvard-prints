@@ -1,8 +1,11 @@
 import React, { FC } from 'react'
-import { Prints } from './static/module/prints/Prints'
+import { Prints } from './modules/prints/Prints'
+
+
+const endpoint = 'http://localhost:9100/api/prints'
 
 const App: FC = () => {
-    return <Prints />
+    return <Prints endpoint={endpoint} />
 }
 
 export default App
