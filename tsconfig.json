@@ -2,6 +2,7 @@
     "compilerOptions": {
       "module": "commonjs",
       "esModuleInterop": true,
+      "jsx": "react-jsx",
       "target": "es6",
       "noImplicitAny": true,
       "moduleResolution": "node",
@@ -10,7 +11,9 @@
       "baseUrl": ".",
       "paths": {
         "*": ["node_modules/*"]
-      }
+      },
+      "typeRoots": ["node_modules/@types", "src/@types"],
     },
-    "include": ["src/**/*"]
+    "include": ["src/**/*"],
+    "exclude": ["node_modules/", "**/node_modules/", "scripts/", "build/", "dist/", "docs/"]
   }
