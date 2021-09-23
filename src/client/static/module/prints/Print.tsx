@@ -3,21 +3,20 @@ import React, { FC } from "react"
 export type PrintProps = {
     id: string
     title: string
-    description: string
+    creditline: string
     copyright: string
     primaryimageurl?: string
 }
 
 export const Print: FC<PrintProps> = (props) => {
-    const { title, description, copyright, primaryimageurl } = props
-    
+    const { title, creditline, copyright, primaryimageurl } = props
     return (
         <div>
             <div>{title}</div>
-            <div>{description}</div>
+            <div>{creditline}</div>
             <div>{copyright}</div>            
                         
-            <img src={primaryimageurl} />
+            <img src={primaryimageurl} alt={title}/>
         </div>
     )
 }
