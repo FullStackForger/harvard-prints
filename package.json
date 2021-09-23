@@ -5,11 +5,11 @@
   "main": "index.js",
   "scripts": {
     "server": "nodemon --config ./nodemon.json src/server/index"
-    
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "dotenv": "^10.0.0",
     "express": "^4.17.1"
   },
   "devDependencies": {
