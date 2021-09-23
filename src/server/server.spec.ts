@@ -1,7 +1,8 @@
 import express from 'express'
 import request from 'supertest'
-
+import axios from 'axios'
 import { startServer } from './server'
+import { URL } from 'url'
 
 describe('Server', () => {  
   const app = startServer({ app: express(), port: 5000 })  
@@ -40,11 +41,33 @@ describe('Server', () => {
   })
     
   describe('GET /api/prints', () => {
-      it('returns list of prints', async () => {      
-        await request(app)
+      it('fetches data from api.harvardartmuseums.org endpoint', async () => {
+        const getSpy = jest.spyOn(axios, "get").mockResolvedValueOnce('{}')
+        const testRequest = await request(app)
           .get('/api/prints')
           .expect(200)
           .expect('Content-Type', /json/)
+                  
+          
+          const { API_KEY } = process.env
+          expect(getSpy).toHaveBeenCalledWith(`https://api.harvardartmuseums.org/object?size=10&page=1&classification=Prints&q=verificationlevel:4&apikey=${API_KEY}`)
+      })
+
+      it('returns list of prints with correct info meta', async () => {      
+        const testRequest = await request(app)
+          .get('/api/prints')
+          .expect(200)
+          .expect('Content-Type', /json/)
+
+        const { info, records } = testRequest.body        
+        expect(info).toMatchObject({
+          totalrecordsperquery: expect.any(Number),
+          totalrecords: expect.any(Number),
+          pages: expect.any(Number),
+          page: expect.any(Number),
+        })
+
+        expect(records).not.toHaveLength(0)        
       })
     })
   })

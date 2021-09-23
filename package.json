@@ -5,11 +5,12 @@
   "main": "index.js",
   "scripts": {
     "server": "nodemon --config ./nodemon.json src/server/index",
-    "test":  "yarn jest --verbose ./src/server"
+    "test": "yarn jest --verbose ./src/server"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.21.4",
     "dotenv": "^10.0.0",
     "express": "^4.17.1"
   },
