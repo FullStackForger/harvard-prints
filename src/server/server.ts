@@ -1,4 +1,5 @@
 import { Express } from 'express'
+import cors from 'cors'
 import dotenv from 'dotenv'
 import axios from 'axios'
 
@@ -16,6 +17,7 @@ export function startServer({ app, port }:AppConfig): Express  {
         throw new Error('Invalid configuration API_KEY is missing.')
     }
 
+    app.use(cors())
     app.get('/api/status', (_, res) => {
         res.status(200).send({ status: "ok"})
     })        

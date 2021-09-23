@@ -14,6 +14,7 @@
   "license": "ISC",
   "dependencies": {
     "axios": "^0.21.4",
+    "cors": "^2.8.5",
     "dotenv": "^10.0.0",
     "express": "^4.17.1"
   },
@@ -26,6 +27,7 @@
     "@testing-library/dom": "^8.6.0",
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^12.1.0",
+    "@types/cors": "^2.8.12",
     "@types/express": "^4.17.13",
     "@types/jest": "^27.0.2",
     "@types/react": "^17.0.24",

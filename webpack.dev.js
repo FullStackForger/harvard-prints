@@ -15,7 +15,19 @@ module.exports = {
     open: false,
     port: 9000,
     historyApiFallback: true,    
-    // public: 'localhost:9000',    
+    proxy: {
+      '/api': {
+        target: 'http://localhost:9100',
+        secure: false,
+        changeOrigin: true,
+        // pathRewrite: { '^/api': '' },
+      },
+    },
+    headers: {
+      "Access-Control-Allow-Origin": "localhost:*",
+      "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, PATCH, OPTIONS",
+      "Access-Control-Allow-Headers": "X-Requested-With, content-type, Authorization"
+    }
   },
   watchOptions: {
     ignored: ['**/build/**', '**/dist/**', '**/node_modules/**', '**/src/server/**', '**/src/data/**']
