@@ -1,3 +1,4 @@
+import React from 'react'
 import { render, waitFor } from '@testing-library/react'
 import { Prints } from './Prints'
 import axios from 'axios'
@@ -11,7 +12,7 @@ describe('Prints component', () => {
 
     it('calls /prints endpoint', async () => {        
         const payload = { data: { records: [] as PrintProps[], info: {}} }
-        const getSpy = jest.spyOn(axios, "get").mockResolvedValueOnce(payload)        
+        const getSpy = jest.spyOn(axios, 'get').mockResolvedValueOnce(payload)        
         const endpoint = 'localhost:9999/api/prints'
         const { getByText } = render(<Prints endpoint={endpoint} />)
         
@@ -44,7 +45,7 @@ describe('Prints component', () => {
             }
         }
 
-        const getSpy = jest.spyOn(axios, "get").mockResolvedValueOnce(payload)
+        const getSpy = jest.spyOn(axios, 'get').mockResolvedValueOnce(payload)
         const { getByText, queryByRole } = render(<Prints endpoint={'http://test.endpoint'} />)
         
         await waitFor(() => {
@@ -59,7 +60,7 @@ describe('Prints component', () => {
     })
 
     it('handles request failure', async () => {
-        const getSpy = jest.spyOn(axios, "get").mockRejectedValue(new Error('random error'))                
+        const getSpy = jest.spyOn(axios, 'get').mockRejectedValue(new Error('random error'))                
       
         const { getByText, getByRole } = render(<Prints endpoint={'http://test.endpoint'} />)
         

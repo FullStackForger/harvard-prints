@@ -1,4 +1,4 @@
-import { PrintProps } from "./Print";
+import { PrintProps } from './Print'
 
 export const createTestPrintProps = (overrides: Partial<PrintProps> = {}): PrintProps => ({
     id: 'test-print-id',

@@ -6,11 +6,10 @@ import axios from 'axios'
 dotenv.config()
 
 export type AppConfig = {
-    app: Express,
-    port: number
+    app: Express
 }
 
-export function startServer({ app, port }:AppConfig): Express  {
+export function startServer({ app }:AppConfig): Express  {
     
     const { API_KEY } = process.env
     if (!API_KEY) {
@@ -19,7 +18,7 @@ export function startServer({ app, port }:AppConfig): Express  {
 
     app.use(cors())
     app.get('/api/status', (_, res) => {
-        res.status(200).send({ status: "ok"})
+        res.status(200).send({ status: 'ok'})
     })        
 
     const endpoint = 'https://api.harvardartmuseums.org/object'

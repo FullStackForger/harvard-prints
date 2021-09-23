@@ -1,13 +1,13 @@
-import React, { FC, useEffect, useState } from "react";
-import axios from "axios";
-import { Print, PrintProps } from "./Print";
+import React, { FC, useEffect, useState } from 'react'
+import axios from 'axios'
+import { Print, PrintProps } from './Print'
 export type PrintsProps = {
     endpoint: string 
 }
 
 export const Prints: FC<PrintsProps> = ({ endpoint }) => {
     
-    const [error, setError] = useState<String | null>(null)
+    const [error, setError] = useState<string | null>(null)
     const [records, setRecords] = useState<PrintProps[]>([])
     const [info, setInfo] = useState({})
 
@@ -29,7 +29,7 @@ export const Prints: FC<PrintsProps> = ({ endpoint }) => {
         }
         
         fetchData(endpoint)
-        return () => {}
+        return () => { /* noop */ }
     }, [])
     
     
