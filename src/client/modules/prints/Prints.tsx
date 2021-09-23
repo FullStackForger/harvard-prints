@@ -7,19 +7,28 @@ export type PrintsProps = {
 
 export const Prints: FC<PrintsProps> = ({ endpoint }) => {
     
-    const [records, setRecords] = useState([])
+    const [error, setError] = useState<String | null>(null)
+    const [records, setRecords] = useState<PrintProps[]>([])
     const [info, setInfo] = useState({})
 
 
     useEffect(() => {            
-        const fetchData = async (endpoint: string ) => {
-            const req = await axios.get(endpoint)            
-            const { records, info } = req.data
-            setRecords(records)
-            setInfo(info)
+        const fetchData = async (endpoint: string ) => {            
+            try {
+                const req = await axios.get(endpoint)            
+                const { records, info } = req.data
+                setRecords(records)
+                setInfo(info)
+                setError(null)
+            } catch (e) { 
+                setRecords([])
+                setInfo({})
+                setError('Service not available. Try again later.')                
+                return
+            }            
         }
         
-        fetchData(endpoint)        
+        fetchData(endpoint)
         return () => {}
     }, [])
     
@@ -28,9 +37,10 @@ export const Prints: FC<PrintsProps> = ({ endpoint }) => {
         <div>
             <h2>Harvard Prints</h2>
             <hr />
-            {JSON.stringify(info, null, 2)}
+            {error && <div role='alert'>{error}</div>}
+            {!error && JSON.stringify(info, null, 2)}            
             <div>
-                {records.map((record: PrintProps) => (<Print key={record.id} {...record} />))}
+                {!error && records.map((record: PrintProps) => (<Print key={record.id} {...record} />))}
             </div>
             <hr />
         </div>

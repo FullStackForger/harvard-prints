@@ -44,14 +44,26 @@ describe('Prints component', () => {
             }
         }
 
-        const getSpy = jest.spyOn(axios, "get").mockResolvedValueOnce(payload)                
-        const { getByText } = render(<Prints endpoint={'http://test.endpoint'} />)
+        const getSpy = jest.spyOn(axios, "get").mockResolvedValueOnce(payload)
+        const { getByText, queryByRole } = render(<Prints endpoint={'http://test.endpoint'} />)
         
         await waitFor(() => {
             expect(getByText('Harvard Prints')).toBeInTheDocument()
 
             expect(getSpy).toHaveBeenCalledTimes(1)
-            
+            expect(queryByRole('alert')).not.toBeInTheDocument()
         })        
+    })
+
+    it('handles request failure', async () => {
+        const getSpy = jest.spyOn(axios, "get").mockRejectedValue(new Error('random error'))                
+      
+        const { getByText, getByRole } = render(<Prints endpoint={'http://test.endpoint'} />)
+        
+        await waitFor(() => {
+            expect(getSpy).toHaveBeenCalledTimes(1)            
+            expect(getByRole('alert').innerHTML).toBe('Service not available. Try again later.')
+        })
+        
     })
 })
