@@ -5,8 +5,6 @@ import { createTestPrintProps } from "./print.mocks"
 
 
 describe('Print component', () => {
-
-
     it.each(['title', 'creditline', 'copyright'])('renders with %s', (key: string): void => {
         const print = createTestPrintProps()
         const { getByText } = render(<Print {...print} />)
