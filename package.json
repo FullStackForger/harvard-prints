@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "server": "ts-node src/server/index.ts"
+    "server": "nodemon --config ./nodemon.json src/server/index"
   },
   "author": "",
   "license": "ISC",
