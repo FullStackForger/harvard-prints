@@ -6,12 +6,7 @@ import { startServer } from './server'
 describe('Server', () => {  
   const app = startServer({ app: express(), port: 5000 })  
 
-  it('starts up correctly', async () => {    
-    await request(app)
-      .get('/')
-      .expect(200)
-      .expect('Content-Type', /json/)
-  })
+  
 
   describe('API Key validation', () => {      
     let { API_KEY } = process.env
@@ -29,18 +24,28 @@ describe('Server', () => {
     })
   })
 
-  describe('/prints', () => {
-    it('returns list of prints', async () => {      
-      await request(app)
-        .get('/prints')
+  
+  describe('/api', () => {
+
+  
+  describe('/api/status GET', () => {
+    it('returns status ok', async () => {    
+      const testRequest = await request(app)
+        .get('/api/status')
         .expect(200)
         .expect('Content-Type', /json/)
+
+      expect(testRequest.body).toEqual({ status: 'ok' })
     })
   })
-
+    
+  describe('GET /api/prints', () => {
+      it('returns list of prints', async () => {      
+        await request(app)
+          .get('/api/prints')
+          .expect(200)
+          .expect('Content-Type', /json/)
+      })
+    })
+  })
 })
-
-
-
-
-

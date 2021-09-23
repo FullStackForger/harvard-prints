@@ -13,13 +13,14 @@ export function startServer({ app, port }:AppConfig): Express  {
         throw new Error('Invalid configuration API_KEY is missing.')
     }
 
-    app.get('/', (_, res) => {
+    app.get('/api/status', (_, res) => {
         res.status(200).send({ status: "ok"})
     })
     
-    app.get('/prints', async (_, res) => {
+    app.get('/api/prints', async (_, res) => {
         res.status(200).send({ inf: {}, records: []})
-    })
+    })    
+
     return app
 }
 
