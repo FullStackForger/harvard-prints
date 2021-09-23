@@ -1,4 +1,4 @@
-import React, { render } from '@testing-library/react'
+import { render } from '@testing-library/react'
 import { Print, PrintProps } from './Print'
 import { createTestPrintProps } from './print.mocks'
 
