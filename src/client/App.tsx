@@ -1,7 +1,8 @@
 import React, { FC } from 'react'
+import { Prints } from './static/module/prints/Prints'
 
 const App: FC = () => {
-    return <div>Harvard Prints</div>
+    return <Prints />
 }
 
 export default App
