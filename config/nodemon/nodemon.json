@@ -1,0 +1,10 @@
+{
+    "verbose": true,
+    "execMap": {
+      "ts": "ts-node --files --project tsconfig.json"
+    },
+    "ext": "ts",
+    "watch": ["package.json", "src/server/"],
+    "ignore": ["*.spec.*", "node_modules/"]
+  }
+  

@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "server": "nodemon --config ./nodemon.json src/server/index",
+    "server": "nodemon --config ./config/nodemon/nodemon.json src/server/index",
     "dev": "webpack serve --config ./webpack.dev.js --profile --progress",
     "test:server": "yarn jest --verbose ./src/server",
     "test:client": "jest --config config/jest/jest.config.js ./src/client",
