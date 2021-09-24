@@ -5,10 +5,13 @@ import { createTestPrintProps } from './print.mocks'
 
 
 describe('Print component', () => {
-    it.each(['title', 'creditline', 'copyright'])('renders with %s', (key: string): void => {
-        const print = createTestPrintProps()
+    it('renders details', (): void => {
+      const print = createTestPrintProps()
         const { getByText } = render(<Print {...print} />)
-        expect(getByText(print[key as keyof PrintProps])).toBeInTheDocument()
+      
+        expect(getByText(print.title)).toBeInTheDocument()
+        expect(getByText(print.creditline)).toBeInTheDocument()
+        expect(getByText(print.copyright)).toBeInTheDocument()
     })
     
     it('renders with an image', ():void => {

@@ -3,7 +3,6 @@
 const path = require('path')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
-
 const { buildPath, sourcePath } = require('./webpack.paths')
 const rules = require('./webpack.rules')
 

@@ -21,6 +21,7 @@
     "indent": ["error", 4],
     "linebreak-style": ["error", "unix"],
     "quotes": ["error", "single"],
+    "no-trailing-spaces": ["error", "never"],
     "semi": ["error", "never"],
     "react/react-in-jsx-scope": "off"
   }

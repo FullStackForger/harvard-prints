@@ -17,8 +17,6 @@ describe('Prints component', () => {
         const { getByText } = render(<Prints endpoint={endpoint} />)
         
         await waitFor(() => {
-            expect(getByText('Harvard Prints')).toBeInTheDocument()
-
             expect(getSpy).toHaveBeenCalledTimes(1)
             expect(getSpy).toHaveBeenCalledWith(endpoint)        
         })        
@@ -48,9 +46,7 @@ describe('Prints component', () => {
         const getSpy = jest.spyOn(axios, 'get').mockResolvedValueOnce(payload)
         const { getByText, queryByRole } = render(<Prints endpoint={'http://test.endpoint'} />)
         
-        await waitFor(() => {
-            expect(getByText('Harvard Prints')).toBeInTheDocument()
-
+        await waitFor(() => {            
             expect(getSpy).toHaveBeenCalledTimes(1)
             expect(queryByRole('alert')).not.toBeInTheDocument()
 

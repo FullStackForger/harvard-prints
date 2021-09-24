@@ -69,7 +69,7 @@ rules.push({
           loader: 'sass-loader',
           options: {
             sourceMap: true,
-            additionalData: `@import '${staticPath}/scss/initial.scss';`,
+            // additionalData: `@import '${staticPath}/scss/main.scss';`,
             sassOptions: {
               includePaths: [path.resolve(staticPath, 'scss/')]
             }
@@ -93,7 +93,7 @@ rules.push({
           loader: 'sass-loader',
           options: {
             sourceMap: true,
-            additionalData: `@import '${staticPath}/scss/initial.scss';`
+            // additionalData: `@import '${staticPath}/scss/main.scss';`
           }
         }
       ]
