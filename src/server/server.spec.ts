@@ -42,7 +42,7 @@ describe('Server', () => {
         describe('GET /api/prints', () => {
             it('fetches data from api.harvardartmuseums.org endpoint', async () => {
                 const getSpy = jest.spyOn(axios, 'get').mockResolvedValueOnce('{}')
-                const testRequest = await request(app)
+                await request(app)
                     .get('/api/prints')
                     .expect(200)
                     .expect('Content-Type', /json/)
@@ -67,6 +67,19 @@ describe('Server', () => {
                 })
 
                 expect(records).not.toHaveLength(0)        
+            })
+
+            it('fetches data for a given page number passed as query', async () => {
+                const getSpy = jest.spyOn(axios, 'get').mockResolvedValueOnce('{}')
+                const page = 3
+                await request(app)
+                    .get(`/api/prints?page=${page}`)
+                    .expect(200)
+                    .expect('Content-Type', /json/)
+                  
+          
+                const { API_KEY } = process.env
+                expect(getSpy).toHaveBeenCalledWith(`https://api.harvardartmuseums.org/object?size=10&page=${page}&classification=Prints&q=verificationlevel:4&apikey=${API_KEY}`)
             })
         })
     })

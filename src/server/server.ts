@@ -21,10 +21,13 @@ export function startServer({ app }:AppConfig): Express  {
         res.status(200).send({ status: 'ok'})
     })        
 
+    
     const endpoint = 'https://api.harvardartmuseums.org/object'
-    const search = `size=10&page=1&classification=Prints&q=verificationlevel:4&apikey=${API_KEY}`
+    
                 
-    app.get('/api/prints', async (_, res) => {
+    app.get('/api/prints', async (req, res) => {
+        const { page = 1} = req.query
+        const search = `size=10&page=${page}&classification=Prints&q=verificationlevel:4&apikey=${API_KEY}`
         const { data } = await axios.get(`${endpoint}?${search}`)
         res.status(200).send({ ...data })            
     })    

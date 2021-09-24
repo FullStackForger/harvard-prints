@@ -1,4 +1,3 @@
-import React from 'react'
 import { render, waitFor } from '@testing-library/react'
 import { Prints } from './Prints'
 import axios from 'axios'
@@ -18,7 +17,7 @@ describe('Prints component', () => {
         
         await waitFor(() => {
             expect(getSpy).toHaveBeenCalledTimes(1)
-            expect(getSpy).toHaveBeenCalledWith(endpoint)        
+            expect(getSpy).toHaveBeenCalledWith(`${endpoint}?page=1`)        
         })        
     })
 
