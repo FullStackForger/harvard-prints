@@ -4,11 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "server": "nodemon --config ./config/nodemon/nodemon.json src/server/index",
+    "server": "esbuild-dev -w -s src/server/index",
+    "build:server": "esbuild --bundle src/server/index --outdir=dist/server --minify --sourcemap --platform=node",
     "dev": "webpack serve --config ./webpack.dev.js --profile --progress",
+    "test": "yarn jest --config config/jest/jest.config.js --verbose",
     "test:server": "yarn jest --verbose ./src/server",
-    "test:client": "jest --config config/jest/jest.config.js ./src/client",
-    "test": "yarn jest --config config/jest/jest.config.js --verbose"
+    "test:client": "jest --config config/jest/jest.config.js ./src/client"
   },
   "author": "",
   "license": "ISC",
@@ -41,6 +42,7 @@
     "bootstrap": "5.1.1",
     "classnames": "^2.3.1",
     "css-loader": "^6.3.0",
+    "esbuild-dev": "^0.7.2",
     "eslint": "^7.32.0",
     "eslint-plugin-react": "^7.26.0",
     "fork-ts-checker-webpack-plugin": "^6.3.3",
@@ -48,7 +50,6 @@
     "identity-obj-proxy": "^3.0.0",
     "jest": "^27.2.1",
     "mini-css-extract-plugin": "^2.3.0",
-    "nodemon": "^2.0.12",
     "react": "^17.0.2",
     "react-bootstrap": "^2.0.0-rc.0",
     "react-dom": "^17.0.2",
